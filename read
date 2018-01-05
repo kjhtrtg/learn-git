@@ -14,3 +14,5 @@ git reset退回版本
 git reset --hard HEAD^  表示退回上一个版本
 git reset --hard sad321543(版本的id )  退回到指定的版本，如果上面退回操作错了，还可以退回到使用git reset会退到的被删除的版本，（操作错了，可以退回去到新的版本）
 因为git reset只是把指针变了，把工作区内容更新到当前的版本，所以非常快
+
+git reflog 当后悔的时候可以使用，git reflog当后悔的时候可以用这个查看所有的记录，被回退的也能看到，可以获得id来后悔
