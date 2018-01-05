@@ -1,2 +1,7 @@
 练习git添加文件
 git status
+git add 文件，添加文件到暂存区，git add --a提交说有的文件
+git commit  -m 注释 注释加双引号“”
+
+git status 查看当前文件状态，是否有更改
+git diff 对比当前和更改的地方，
