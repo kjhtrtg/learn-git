@@ -5,3 +5,12 @@ git commit  -m 注释 注释加双引号“”
 
 git status 查看当前文件状态，是否有更改
 git diff 对比当前和更改的地方，
+git log 查看打印的提交记录
+输入q退出记录能继续敲代码
+git log --pretty=oneline 将记录在一行显示，显示提交的SHA1的算法的版本号和提交注释
+
+HEAD表示的是当前的版本，HEAD^表示上一个版本，HEAD^^表示上2次HEAD~100表示上100次
+git reset退回版本
+git reset --hard HEAD^  表示退回上一个版本
+git reset --hard sad321543(版本的id )  退回到指定的版本，如果上面退回操作错了，还可以退回到使用git reset会退到的被删除的版本，（操作错了，可以退回去到新的版本）
+因为git reset只是把指针变了，把工作区内容更新到当前的版本，所以非常快
