@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17c2c1d3-85d9-405d-b2df-287f852742d3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/read" afterPath="$PROJECT_DIR$/read" />
     </list>
     <ignored path="learn-git.iws" />
@@ -29,8 +28,8 @@
       <file leaf-file-name="read" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/read">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+            <state relative-caret-position="625">
+              <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -187,11 +186,12 @@
       <workItem from="1515140632545" duration="1986000" />
       <workItem from="1515145882263" duration="1374000" />
       <workItem from="1515375071539" duration="3635000" />
+      <workItem from="1515391513583" duration="60000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6995000" />
+    <option name="totallyTimeSpent" value="7055000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-288" y="-825" width="1932" height="1096" extended-state="0" />
@@ -233,6 +233,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/read">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/read">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -249,8 +257,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/read">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        <state relative-caret-position="625">
+          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
           <folding />
         </state>
       </provider>
