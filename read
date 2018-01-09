@@ -81,4 +81,7 @@ $ git checkout master（分知名）用来切换分支
 我们把dev分支的工作成果合并到master分支上：
 git merge dev（dev合并到当前分支）
 
+合并完成后，就可以放心地删除dev分支了
+git branch -d dev
+
 
