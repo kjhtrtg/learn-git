@@ -58,3 +58,22 @@ fatal: remote origin already exists.
 4、找到你的github的安装路径，我的是C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8\etc
 5、找到一个名为gitconfig的文件，打开它把里面的[remote "origin"]那一行删掉就好了！
 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，
+但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https
+
+HEAD指向的就是当前分支
+当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，
+指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上
+
+我们创建dev分支，然后切换到dev分支：
+git checkout -b dev
+git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+$ git branch dev
+$ git checkout dev
+
+git branch命令查看当前分支
+
+
