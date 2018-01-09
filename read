@@ -43,7 +43,7 @@ git clone
 1.将本地仓库初始化，命令：git init。
 2.并克隆远程仓库项目地址url,命令:git clone url.如下图
 3.git remote add origin git@github.com:michaelliao/learngit.git
-4.git push -u origin master
+4.git push -u origin master(首次提交）
 在使用git 对源代码进行push到gitHub时可能会出错，信息如下
 现错误的主要原因是github中的README.md文件不在本地代码目录中(error: failed to push some refs to 'git@github.com:yangchao0718/cocos2d.git)
 可以通过如下命令进行代码合并【注：pull=fetch+merge]
@@ -57,3 +57,4 @@ fatal: remote origin already exists.
 3、如果输入$ git remote rm origin 还是报错的话，error: Could not remove config section 'remote.origin'. 我们需要修改gitconfig文件的内容
 4、找到你的github的安装路径，我的是C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8\etc
 5、找到一个名为gitconfig的文件，打开它把里面的[remote "origin"]那一行删掉就好了！
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
