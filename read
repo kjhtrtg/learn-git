@@ -107,6 +107,8 @@ $ git log --stat
 short，full 和fuller 可以用
 git log --pretty=oneline
 
+--abbrev-commit 仅显示 SHA-1 的前几个字符,而非所有的 40 个字符。
+
 format，可以定制要显示的记录格式，这样的输出便于后期编程提取分析
  git log --pretty=format:"%h - %an, %ar : %s"
 ca82a6d - Scott Chacon, 11 months ago : changed the version number
