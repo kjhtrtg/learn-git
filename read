@@ -161,3 +161,7 @@ Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉�
 如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，
 这样，从分支历史上就可以看出分支信息。
 下面我们实战一下--no-ff方式的git merge：
+
+git stash贮藏功能，更改到一半有生产等的bug的时候可以这样用
+git status的时候工作区就没有改动了，因为已经贮藏了。可以切分支
+
