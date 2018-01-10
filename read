@@ -195,4 +195,23 @@ $ git stash apply stash@{0}
 是容不下越来越多的陈旧stash id 仍然存在的，所以我更习惯于用git stash pop 命令
 
 
+shortcut	相同的命令或者说明
+git stash	git stash save
+git stash apply	git stash apply stash@{0}
+git stash drop	git stash drop stash@{0}
+git stash pop	git stash apply 和 git stash drop
+git stash list	查看stash列表
+git stash list --stat	list可以加和git log一样的参数，stat表示显示改变
+git stash show stash@{0}	显示一个stash内容
+git stash show	git stash show stash@{0}
+git stash show --patch	显示文件差异
+git stash save "yin save"	给stash加上说明信息
+git stash branch LittleBear stash@{0}	创建LittleBear分支，然后再stash pop
+git stash save --keep-index	staging area not to be stashe
+
+如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。
+git branch -D dev（强行删除，git branch -d dev不能强行删除）
+
+
+
 
