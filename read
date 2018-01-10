@@ -174,5 +174,12 @@ git log --graph --pretty=oneline --abbrev-commit
 git stash贮藏功能，更改到一半有生产等的bug的时候可以这样用
 git status的时候工作区就没有改动了，因为已经贮藏了。可以切分支
 
+工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：
+一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
+另一种方式是用git stash pop，恢复的同时把stash内容也删了：
+
+再用git stash list查看
+你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
+$ git stash apply stash@{0}
 
 
