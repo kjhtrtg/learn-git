@@ -39,213 +39,31 @@ git reset命令既可以回退版本，也可以把暂存区的修改回退到�
 “md xx”创建一个baidu文件夹下的xx文件夹
 想创建一个cc.txt的文件，只需输入“cd.>cc.txt”，按回车键，cd.表示为当前目录
 
-git clone
-1.将本地仓库初始化，命令：git init。
-2.并克隆远程仓库项目地址url,命令:git clone url.如下图
-3.git remote add origin git@github.com:michaelliao/learngit.git
-4.git push -u origin master(首次提交）
-在使用git 对源代码进行push到gitHub时可能会出错，信息如下
-现错误的主要原因是github中的README.md文件不在本地代码目录中(error: failed to push some refs to 'git@github.com:yangchao0718/cocos2d.git)
-可以通过如下命令进行代码合并【注：pull=fetch+merge]
-git pull --rebase origin master
-此时再执行语句 git push -u origin master即可完成代码上传到github
+git tag查看所有tag标签
+git tag <name>(v1.0)创建标签名字是v1.0
 
-fatal: remote origin already exists.
-解决办法如下：
-1、先输入$ git remote rm origin
-2、再输入$ git remote add origin git@github.com:djqiang/gitdemo.git 就不会报错了！
-3、如果输入$ git remote rm origin 还是报错的话，error: Could not remove config section 'remote.origin'. 我们需要修改gitconfig文件的内容
-4、找到你的github的安装路径，我的是C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8\etc
-5、找到一个名为gitconfig的文件，打开它把里面的[remote "origin"]那一行删掉就好了！
-此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+创建带说明的标签
+git tag -a v1.0 -m "说明"
+使用git show v1.0查看说明文字标签1.0的详细信息
 
-Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
-Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
-使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，
-但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https
+git tag -s v2.0 -m "-s用私钥签名一个标签"
+后补tag ,git tag v2.0 1111(GIT log提交的SHA-1);git
+如果标签打错了，也可以删除：
 
-HEAD指向的就是当前分支
-当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，
-指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上
+$ git tag -d v0.1
+Deleted tag 'v0.1' (was e078af9)
+因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。
+如果要推送某个标签到远程，使用命令git push origin <tagname>
 
-我们创建dev分支，然后切换到dev分支：
-git checkout -b dev
-git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
-$ git branch dev
-$ git checkout dev
+或者，一次性推送全部尚未推送到远程的本地标签：
+$ git push origin --tags
 
-git branch命令查看当前分支
-
-分支的工作完成，我们就可以切换回master分支：
-$ git checkout master（分知名）用来切换分支
-我们把dev分支的工作成果合并到master分支上：
-git merge dev（dev合并到当前分支）
-
-合并完成后，就可以放心地删除dev分支了
-git branch -d dev
-
-当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
-用git log --graph命令可以看到分支合并图。（带有详细信息的）
-
-用带参数的git log也可以看到分支的合并情况：
-$ git log --graph --pretty=oneline --abbrev-commit（不带详细信息的）
-*   59bc1cb conflict fixed
-|\
-| * 75a857c AND simple
-* | 400b400 & simple
-|/
-* fec145a branch test
-...
-
-git log -p -2
--p 选项展开显示每次提交的内容差异，用 -2 则仅显示最近的两次更新
-
---stat，仅显示简要的增改行数统计：
-$ git log --stat
-
---pretty 选项，可以指定使用完全不同于默认格式的方式展示提交历史
-short，full 和fuller 可以用
-git log --pretty=oneline
-
---abbrev-commit 仅显示 SHA-1 的前几个字符,而非所有的 40 个字符。
-
-format，可以定制要显示的记录格式，这样的输出便于后期编程提取分析
- git log --pretty=format:"%h - %an, %ar : %s"
-ca82a6d - Scott Chacon, 11 months ago : changed the version number
-085bb3b - Scott Chacon, 11 months ago : removed unnecessary test code
-%H	提交对象（commit）的完整哈希字串
-%h	提交对象的简短哈希字串
-%T	树对象（tree）的完整哈希字串
-%t	树对象的简短哈希字串
-%P	父对象（parent）的完整哈希字串
-%p	父对象的简短哈希字串
-%an	作者（author）的名字
-%ae	作者的电子邮件地址
-%ad	作者修订日期（可以用 -date= 选项定制格式）
-%ar	作者修订日期，按多久以前的方式显示
-%cn	提交者(committer)的名字
-%ce	提交者的电子邮件地址
-%cd	提交日期
-%cr	提交日期，按多久以前的方式显示
-%s	提交说明
-_作者（author）_和_提交者（committer）_之间究竟有何差别，
-其实作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人
-
-Git 在输出所有提交时会自动调用分页程序（less），要看更早的更新只需翻到下页即可。
-另外还有按照时间作限制的选项，比如 --since 和 --until。
-下面的命令列出所有最近两周内的提交
-git log --since=2.weeks
-
---author 选项显示指定作者的提交，用 --grep 选项搜索提交说明中的关键字。
-（请注意，如果要得到同时满足这两个选项搜索条件的提交，就必须用--all-match 选项
-
--(n)	仅显示最近的 n 条提交
---since, --after 仅显示指定时间之后的提交。
---until, --before 仅显示指定时间之前的提交。
---author 仅显示指定作者相关的提交。
---committer 仅显示指定提交者相关的提交。
-
-2008 年 10 月期间，Junio Hamano 提交的但未合并的测试脚本（位于项目的 t/ 目录下的文件），
-可以用下面的查询命令：
-$ git log --pretty="%h - %s" --author=gitster --since="2008-10-01" \
-   --before="2008-11-01" --no-merges -- t/
-
-图形化工具更容易展示历史提交的变化，随 Git 一同发布的 gitk 就是这样一种工具。
-它是用 Tcl/Tk 写成的，基本上相当于 git log 命令的可视化版本，
-凡是git log 可以用的选项也都能用在 gitk 上。在项目工作目录中输入 gitk 命令后（前面不用加git），
-就会启动图 gitk2-2 所示的界面。
-
-上半个窗口显示的是历次提交的分支祖先图谱，下半个窗口显示当前点选的提交对应的具体差异
-
-Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
-如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，
-这样，从分支历史上就可以看出分支信息。
-下面我们实战一下--no-ff方式的git merge：
-
-Git分支十分强大，在团队开发中应该充分应用。
-
-合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，
-能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
-
-git merge --no-ff -m "merge with no-ff" dev
-查看记录 可以看到分支合并图 一条线上 显示SHA-1的前几个字符版本
-git log --graph --pretty=oneline --abbrev-commit
-
-git stash贮藏功能，更改到一半有生产等的bug的时候可以这样用
-git status的时候工作区就没有改动了，因为已经贮藏了。可以切分支
-
-工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：
-一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
-另一种方式是用git stash pop，恢复的同时把stash内容也删了：
-
-再用git stash list查看
-你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
-$ git stash apply stash@{0}
-后边{}数字是几就就是恢复到工作区哪个贮藏
-
-关于git stash命令的使用方法网上一大把，我想记录的是我在使用过程中觉得实用及好用的：
-当在一个分支的开发工作未完成，却又要切换到另外一个分支进行开发的时候，除了commit原分支的代码改动的方法外，我觉得git stash是一个更加便捷的选择。
-步骤如下：
-一、添加改动到stash。在原分支 git stash save -a "messeag"，网上很多很多资料都没有加 -a 这个option选项，我想他们的代码开发可能都是在原代码上进行修改吧。而对于在项目里加入了代码新文件的开发来说，-a选项才会将新加入的代码文件同时放入暂存区。
-二、恢复改动。如果你要恢复的是最近的一次改动，git stash pop即可，我用这个用的最多。如果有多次stash操作，那就通过git stash list查看stash列表，从中选择你想要pop的stash，运行命令git stash pop stash@{id}或者 git stash apply stash@{id}即可。这方面网上的资料挺多的。
-三、删除stash。git stash drop <stash@{id}>  如果不加stash编号，默认的就是删除最新的，也就是编号为0的那个，加编号就是删除指定编号的stash。git  stash clear 是清除所有stash,整个世界一下子清净了！
-四、git stash pop  与 git stash apply <stash@{id}> 的区别。
-原来git stash pop stash@{id}命令会在执行后将对应的stash id 从stash list里删除，
-而 git stash apply stash@{id} 命令则会继续保存stash id。对于有点强迫症的我来说，
-是容不下越来越多的陈旧stash id 仍然存在的，所以我更习惯于用git stash pop 命令
+如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：
+$ git tag -d v0.9
+Deleted tag 'v0.9' (was 6224937)
+然后，从远程删除。删除命令也是push，但是格式如下：
+$ git push origin :refs/tags/v0.9
 
 
-shortcut	相同的命令或者说明
-git stash	git stash save
-git stash apply	git stash apply stash@{0}
-git stash drop	git stash drop stash@{0}
-git stash pop	git stash apply 和 git stash drop
-git stash list	查看stash列表
-git stash list --stat	list可以加和git log一样的参数，stat表示显示改变
-git stash show stash@{0}	显示一个stash内容
-git stash show	git stash show stash@{0}
-git stash show --patch	显示文件差异
-git stash save "yin save"	给stash加上说明信息
-git stash branch LittleBear stash@{0}	创建LittleBear分支，然后再stash pop
-git stash save --keep-index	staging area not to be stashe
-
-如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。
-git branch -D dev（强行删除，git branch -d dev不能强行删除）
-当提交后不同时才会提示，如果dev和master相同时候，可以-d删除
-
-当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，
-并且，远程仓库的默认名称是origin。
-
-要查看远程库的信息，用git remote：
-$ git remote
-origin
-
-用git remote -v显示更详细的信息：
-$ git remote -v
-origin  git@github.com:michaelliao/learngit.git (fetch)
-origin  git@github.com:michaelliao/learngit.git (push)
-上面显示了可以抓取和推送的origin的地址。如果没有推送权限，就看不到push的地址。
-
-推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，
-要指定***本地分支***，这样，Git就会把该分支推送到远程库对应的远程分支上：
-
-$ git push origin master
-如果要推送其他分支，比如dev，就改成：
-
-$ git push origin dev
-但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？
-master分支是主分支，因此要时刻与远程同步；
-dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
-bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
-feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
-
-因此，多人协作的工作模式通常是这样：
-首先，可以试图用git push origin branch-name推送自己的修改；
-如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
-如果合并有冲突，则解决冲突，并在本地提交；
-没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
-如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，
-用命令git branch --set-upstream branch-name origin/branch-name。
-这就是多人协作的工作模式，一旦熟悉了，就非常简单。
 
 
