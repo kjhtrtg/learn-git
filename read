@@ -292,6 +292,8 @@ git remote add github git@github.com:kjhtrrg/learn-git.git
 提交到哪个远程库就用那个的名字
 git push gitee/github master
 
+比如，让Git显示颜色，会让命令输出看起来更醒目：
+$ git config --global color.ui true
 
 
 
