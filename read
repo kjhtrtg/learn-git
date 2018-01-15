@@ -294,6 +294,25 @@ git push gitee/github master
 
 比如，让Git显示颜色，会让命令输出看起来更醒目：
 $ git config --global color.ui true
+建立忽略文件.gitignore
+可以使用git check-ignore -v file忽略文件 可以检查忽略里面的错误
+如果某个文件满足忽略规则又要强行加入可以，加入-f
+比如git add -f file文件名
+
+git的命令简化
+git config --global alias.st status
+相当于git st就表示git status相同
+--global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。
+
+配置一个git last，让其显示最后一次提交信息：
+$ git config --global alias.last 'log -1'
+这样，用git last就能显示最近一次的提交：
+
+配置Git的时候，加上--global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。
+配置文件放哪了？每个仓库的Git配置文件都放在.git/config文件中：
+
+cat .git/config当前目录下Git配置
+
 
 
 
