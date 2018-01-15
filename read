@@ -277,6 +277,22 @@ $ git push origin :refs/tags/v0.9
 自己拥有Fork后的仓库的读写权限；
 可以推送pull request给官方仓库来贡献代码，需要作者同意才能成功
 
+可以使用国内的Git托管服务——码云（gitee.com）用法与github基本一致
+
+使用git remote rm origin
+删除关联
+git remote add origin（远程的名字可以自定义）git@gitee.com:xiangwenlong/learn-git.git
+使用可能有readme.txt,
+git pull --rebase gitee master
+git pull git@gitree.com:xiangwenlong/learn-git.git
+git push -u gitee master
+可以建立多个联系
+和上面一样步骤改下gitee的名字就可以
+git remote add github git@github.com:kjhtrrg/learn-git.git
+提交到哪个远程库就用那个的名字
+git push gitee/github master
+
+
 
 
 
