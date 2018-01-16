@@ -396,5 +396,24 @@ working copy代表你正在工作的那个文件集
 --hard参数将会blow out everything.它将重置HEAD返回到另外一个commit(取决于~12的参数），
 重置index以便反映HEAD的变化，并且重置working copy也使得其完全匹配起来。
 
+git status -s
+AM README
+A  hello.php
+"AM" 状态的意思是，这个文件在我们将它添加到缓存之后又有改动。改动后我们在执行 git add 命令将其添加到缓存中
+-s 参数，以获得简短的结果输出。如果没加该参数会详细输出内容
+
+执行 git diff 来查看执行 git status 的结果的详细信息
+git diff 命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。
+git diff 有两个主要的应用场景。
+尚未缓存的改动：git diff（工作区）
+查看已缓存的改动： git diff --cached（暂存区修改）
+查看已缓存的与未缓存的所有改动：git diff HEAD
+显示摘要而非整个 diff：git diff --stat（只显示更改文件行数）
+
+git status 显示你上次提交更新后的更改或者写入缓存的改动（暂存区和工作区更改）
+
+如果你没有设置 -m 选项，Git 会尝试为你打开一个编辑器以填写提交信息。
+Git 也允许你用 -a 选项跳过这一步。命令格式如下：
+git commit -a
 
 
