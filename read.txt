@@ -434,5 +434,77 @@ git rm –r *
 git mv 命令用于移动或重命名一个文件、目录、软连接
 git mv README(存在文件)  README.md（命名后文件）将read重命名为reame.md
 
+A:查看文件内容主要用法：
+1、cat f1.txt，查看f1.txt文件的内容。
+2、cat -n f1.txt，查看f1.txt文件的内容，并且由1开始对所有输出行进行编号。
+3、cat -b f1.txt，查看f1.txt文件的内容，用法与-n相似，只不过对于空白行不编号。
+4、cat -s f1.txt，当遇到有连续两行或两行以上的空白行，就代换为一行的空白行。
+5、cat -e f1.txt，在输出内容的每一行后面加一个$符号。
+6、cat f1.txt f2.txt，同时显示f1.txt和f2.txt文件内容，注意文件名之间以空格分隔，而不是逗号。
+7、cat -n f1.txt>f2.txt，对f1.txt文件中每一行加上行号后然后写入到f2.txt中，会覆盖原来的内容，文件不存在则创建它。
+8、cat -n f1.txt>>f2.txt，对f1.txt文件中每一行加上行号后然后追加到f2.txt中去，不会覆盖原来的内容，文件不存在则创建
+
+你也可以用 '--reverse'参数来逆向显示所有日志。
+$ git log --reverse --oneline
+
+指定用户的提交日志可以使用命令：git log --author
+ git log --author=Linus --oneline -5（最近的5条）
+
+--since 和 --before，但是你也可以用 --until 和 --after。
+ git log --oneline --before={3.weeks.ago} --after={2010-04-18} --no-merges
+
+ -a 选项意为"创建一个带注解的标签"。 不用 -a 选项也可以执行的，
+ 但它不会记录这标签是啥时候打的，谁打的，也不会让你添加个标签的注解。 我推荐一直创建带注解的标签。
+ $ git tag -a v1.0
+ 85fc7e7(上面实例最后一行)，但是那时候忘了给它打标签。
+ git tag -a v0.9 85fc7e7
+ git tag -a <tagname> -m "runoob.com标签"
+
+ $ ssh-keygen -t rsa -C "youremail@example.com"？？生成ssh
+
+
+ 1、从远程仓库下载新分支与数据：
+ git fetch  git fetch [alias](gitee/github等远程分支名称)
+ 该命令执行完后需要执行git merge 远程分支到你所在的分支。
+ 2、从远端仓库提取数据并尝试合并到当前分支：
+ git merge  git merge origin/master（gitee/master）
+ 该命令就是在执行 git fetch 之后紧接着执行 git merge 远程分支到你所在的任意分支。
+
+ 上一章节中我们远程仓库使用了 Github，Github 公开的项目是免费的，但是如果你不想让其他人看到你的项目就需要收费。
+ 这时我们就需要自己搭建一台Git服务器作为私有仓库使用。
+ 接下来我们将以 Centos 为例搭建 Git 服务器。
+ 1、安装Git
+ $ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel
+ $ yum install git
+ 接下来我们 创建一个git用户组和用户，用来运行git服务：
+ $ groupadd git
+ $ useradd git -g git
+ 2、创建证书登录
+ 收集所有需要登录的用户的公钥，公钥位于id_rsa.pub文件中，把我们的公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。
+ 如果没有该文件创建它：
+ $ cd /home/git/
+ $ mkdir .ssh
+ $ chmod 700 .ssh
+ $ touch .ssh/authorized_keys
+ $ chmod 600 .ssh/authorized_keys
+ 3、初始化Git仓库
+ 首先我们选定一个目录作为Git仓库，假定是/home/gitrepo/runoob.git，在/home/gitrepo目录下输入命令：
+ $ cd /home
+ $ mkdir gitrepo
+ $ chown git:git gitrepo/
+ $ cd gitrepo
+
+ $ git init --bare runoob.git
+ Initialized empty Git repository in /home/gitrepo/runoob.git/
+ 以上命令Git创建一个空仓库，服务器上的Git仓库通常都以.git结尾。然后，把仓库所属用户改为git：
+ $ chown -R git:git runoob.git
+ 4、克隆仓库
+ $ git clone git@192.168.45.4:/home/gitrepo/runoob.git
+ Cloning into 'runoob'...
+ warning: You appear to have cloned an empty repository.
+ Checking connectivity... done.
+ 192.168.45.4 为 Git 所在服务器 ip ，你需要将其修改为你自己的 Git 服务 ip。
+ 这样我们的 Git 服务器安装就完成了，接下来我们可以禁用 git 用户通过shell登录，可以通过编辑/etc/passwd文件完成。找到类似下面的一行：
+ git:x:503:503::/home/git:/bin/bash
 
 
