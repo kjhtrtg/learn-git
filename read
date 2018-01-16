@@ -357,6 +357,44 @@ warning: You appear to have cloned an empty repository.
 所以，可以在服务器端编写一系列脚本来控制提交等操作，达到权限控制的目的。Gitolite就是这个工具。
 这里我们也不介绍Gitolite了，不要把有限的生命浪费到权限斗争中。
 
+当执行 "git rm --cached <file>" 命令时，会直接从暂存区删除文件，工作区则不做出改变。
+当执行 "git reset HEAD" 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响
+当执行 "git checkout ." 或者 "git checkout -- <file>" 命令时，
+会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动
+
+当执行 "git checkout HEAD ." 或者 "git checkout HEAD <file>" 命令时，
+会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。
+这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。
+
+git init newrepo
+初始化后，会在 newrepo 目录下会出现一个名为 .git 的目录，所有 Git 需要的数据和资源都存放在这个目录中
+
+ git add *.c
+$ git add README
+$ git commit -m '初始化项目版本'
+以上命令将目录下以 .c 结尾及 README 文件提交到仓库中。
+
+克隆仓库的命令格式为：
+*repo:Git 仓库。
+*directory:本地目录
+git clone <repo>
+如果我们需要克隆到指定的目录，可以使用以下命令格式：
+git clone <repo> <directory>
+
+HEAD
+这是当前分支版本顶端的别名，也就是在当前分支你最近的一个提交
+
+Index
+index也被称为staging area，是指一整套即将被下一个提交的文件集合。他也是将成为HEAD的父亲的那个commit
+
+Working Copy
+working copy代表你正在工作的那个文件集
+
+--mixed是reset的默认参数，也就是当你不指定任何参数时的参数。
+它将重置HEAD到另外一个commit,并且重置index以便和HEAD相匹配，但是也到此为止。working copy不会被更改。
+
+--hard参数将会blow out everything.它将重置HEAD返回到另外一个commit(取决于~12的参数），
+重置index以便反映HEAD的变化，并且重置working copy也使得其完全匹配起来。
 
 
 
